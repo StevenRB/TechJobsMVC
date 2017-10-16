@@ -1,7 +1,7 @@
 ﻿<h1>@ViewBag.title</h1>
 
 <form action="/Search/Results">
-    <h2>Search by:</h2>
+    <h2>Filter by Column:</h2>
 
     <p>
         @foreach (KeyValuePair<string, string> column in ViewBag.columns)
@@ -24,13 +24,28 @@
 
     <input type="submit" value="Search" />
 </form>
-
+<!--Consider Creating a whole new page for Results Action and understand the fundamentals of what is happening below!-->
 <hr />
 
 @if (ViewBag.jobs != null)
 {
-
     <h3>@ViewBag.jobs.Count Result(s)</h3>
-
-    // TODO #2 - Loop over jobs dictionary and display all job fields 
+    <h2>@ViewData["searchresults"]</h2>
 }
+   
+        <!--// TODO #2 - Loop over jobs dictionary and display all job fields-->
+
+    
+    @foreach (Dictionary<string, string> job in ViewBag.jobs)
+    {
+        <table class="job-listing">
+            @foreach (var joblist in job)
+            {
+                <tr asp-controller="search" asp-action="results" asp-route-searchtype="@joblist.Key" asp-route-searchterm="@joblist.Value">
+                    <td>@joblist.Key</td>
+                    <td>@joblist.Value</td>
+                </tr>
+            }
+        </table>
+    }
+        

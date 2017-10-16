@@ -65,7 +65,7 @@ namespace TechJobs.Models
                         jobs.Add(row);
 
                         // Finding one field in a job that matches is sufficient
-                        break;
+                        //break;
                     }
                 }
             }
@@ -94,6 +94,8 @@ namespace TechJobs.Models
                 if (aValue.ToLower().Contains(value.ToLower()))
                 {
                     jobs.Add(row);
+                    //Added a break to test...
+                    //break;
                 }
             }
 
